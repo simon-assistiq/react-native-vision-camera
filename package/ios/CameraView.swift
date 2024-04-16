@@ -122,6 +122,11 @@ public final class CameraView: UIView, CameraSessionDelegate {
   override public func layoutSubviews() {
     previewView.frame = frame
     previewView.bounds = bounds
+
+    // FIXME: workaround
+    if previewView.videoPreviewLayer.connection?.videoOrientation != .landscapeLeft {
+      previewView.videoPreviewLayer.connection?.videoOrientation = .landscapeLeft
+    }
   }
 
   func getPixelFormat() -> PixelFormat {
